@@ -1,48 +1,60 @@
-{  
-    "ReRoutes": [  
-        {  
-            "DownstreamPathTemplate": "/api/customer",  
-            "DownstreamScheme": "http",  
-            "DownstreamHostAndPorts": [
-                {
-                    "Host": "localhost",
-                    "Port": 9001
-                }
-            ],
-            "UpstreamPathTemplate": "/customers",  
-            "UpstreamHttpMethod": [ "Get" ],
-            "AuthenticationOptions": {  
-                "AuthenticationProviderKey": "TestKey",  
-                "AllowedScopes": []  
-            }  
-        },  
-        {  
-            "DownstreamPathTemplate": "/api/customers/{id}",  
-            "DownstreamScheme": "http",  
-            "DownstreamHostAndPorts": [
-                {
-                    "Host": "localhost",
-                    "Port": 9001
-                }
-            ],
-            "UpstreamPathTemplate": "/customers/{id}",  
-            "UpstreamHttpMethod": [ "Get" ]  
-        },
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/customer",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
         {
-            "DownstreamPathTemplate": "/api/auth",
-            "DownstreamScheme": "http",
-            "DownstreamHostAndPorts": [
-                {
-                    "Host": "localhost",
-                    "Port": 9003
-                }
-            ],
-            "UpstreamPathTemplate": "/api/auth",
-            "UpstreamHttpMethod": [ "Get" ]
+          "Host": "localhost",
+          "Port": 9001
         }
-    ],  
-    "GlobalConfiguration": {  
-        "RequestIdKey": "OcRequestId",  
-        "AdministrationPath": "/administration"  
-    }  
-}  
+      ],
+      "UpstreamPathTemplate": "/customers",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/customers/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9001
+        }
+      ],
+      "UpstreamPathTemplate": "/customers/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9003
+        }
+      ],
+      "UpstreamPathTemplate": "/auth/register",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9003
+        }
+      ],
+      "DownstreamPathTemplate": "/api/auth/login",
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/auth/login"
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration"
+  }
+}

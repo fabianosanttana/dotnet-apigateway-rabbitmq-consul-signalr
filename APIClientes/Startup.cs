@@ -23,7 +23,7 @@ namespace APIClientes
         {
             var audienceConfig = Configuration.GetSection("Audience");
 
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(audienceConfig["Secret"]));
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(audienceConfig["Chave"]));
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
@@ -31,7 +31,7 @@ namespace APIClientes
                 ValidateIssuer = true,
                 ValidIssuer = audienceConfig["Iss"],
                 ValidateAudience = true,
-                ValidAudience = audienceConfig["Aud"],
+                ValidAudience = audienceConfig["Author"],
                 ValidateLifetime = true,
                 ClockSkew = TimeSpan.Zero,
                 RequireExpirationTime = true,
