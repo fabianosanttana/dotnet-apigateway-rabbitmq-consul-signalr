@@ -17,7 +17,7 @@
       }
     },
     {
-      "DownstreamPathTemplate": "/api/customers/{id}",
+      "DownstreamPathTemplate": "/api/customer/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -26,7 +26,8 @@
         }
       ],
       "UpstreamPathTemplate": "/customers/{id}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      "Key": "customer-by-id"
     },
     {
       "DownstreamPathTemplate": "/api/auth/register",
@@ -51,6 +52,29 @@
       "DownstreamScheme": "http",
       "UpstreamHttpMethod": [ "POST" ],
       "UpstreamPathTemplate": "/auth/login"
+    },
+    {
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9005
+        }
+      ],
+      "DownstreamPathTemplate": "/api/products/{id}",
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/products/{id}",
+      "Key": "product-by-id"
+    }
+  ],
+  "Aggregates": [
+    {
+      "ReRouteKeys": [
+        "customer-by-id",
+        "product-by-id"
+      ],
+      "UpstreamPathTemplate": "/api/customer-with-products/{id}",
+      "Aggregator": "CustomerWithProductAggregator"
     }
   ],
   "GlobalConfiguration": {

@@ -18,9 +18,9 @@ namespace APIClientes.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<object> Get(int id)
         {
-            return $"Catcher Wong - {id}";
+            return new { Id = id, Message = $"Teste Agregação - {id}"};
         }
     }
 }
